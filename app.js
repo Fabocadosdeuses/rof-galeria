@@ -23,7 +23,8 @@ function renderAuth(){
  const logged=!!currentUser;
  ["who","uploadBtn","logoutBtn"].forEach(id=>logged?show(id):hide(id));
  if(logged){$("who").textContent="@"+(currentProfile?.username||"artista");}
- $("loginBtn").classList.toggle("hidden",logged);
+ $("adminBtn").classList.toggle("hidden", !logged || currentProfile?.role !== "admin");
+  $("loginBtn").classList.toggle("hidden",logged);
 }
 function usernameEmail(name){return name.trim().toLowerCase()+"@accounts.rof.invalid";}
 async function loadProfile(){
