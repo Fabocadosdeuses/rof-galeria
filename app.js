@@ -111,7 +111,9 @@ $("createInviteBtn").onclick=async()=>{
   }catch{}
 };
 
- e.preventDefault();if(!currentUser||!currentProfile){status("uploadStatus","Entra numa conta de artista primeiro.");return;}
+$("uploadForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!currentUser||!currentProfile){status("uploadStatus","Entra numa conta de artista primeiro.");return;}
  const file=$("artImage").files[0];if(!file)return;
  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){status("uploadStatus","Usa JPG, PNG ou WebP.");return;}
  if(file.size>8*1024*1024){status("uploadStatus","A imagem tem de ter até 8 MB.");return;}
