@@ -1,6 +1,6 @@
 // Configuração da RØF: preencher depois de criar o projeto Supabase.
-const SUPABASE_URL = "COLOCA_AQUI_O_PROJECT_URL";
-const SUPABASE_ANON_KEY = "COLOCA_AQUI_A_ANON_PUBLIC_KEY";
+const SUPABASE_URL = "https://yawijjityyryrvbyvbaz.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_UAecJ2fj_d5ao4IPvtorgQ_PKug0e68";
 const ready = !SUPABASE_URL.includes("COLOCA_AQUI") && !SUPABASE_ANON_KEY.includes("COLOCA_AQUI");
 const sb = ready ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const $ = id => document.getElementById(id);
