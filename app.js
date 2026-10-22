@@ -16,6 +16,11 @@ $("who").onclick=()=>{
     show("adminModal");
   }
 };
+$("adminBtn").onclick=()=>{
+  if(currentProfile?.role==="admin"){
+    show("adminModal");
+  }
+};
 $("loginBtn").onclick=()=>{ if(!ready){alert("Falta configurar o Supabase. Segue o README incluído no pacote.");return;} authMode="login"; $("authTitle").textContent="Entrar na RØF"; $("authDesc").textContent="Acesso reservado aos artistas autorizados."; $("authSubmit").textContent="Entrar"; hide("inviteField"); $("username").value="";$("password").value="";status("authStatus","");show("authModal");};
 $("uploadBtn").onclick=()=>{ $("uploadForm").reset();status("uploadStatus","");show("uploadModal"); };
 $("logoutBtn").onclick=async()=>{if(sb)await sb.auth.signOut();currentUser=null;currentProfile=null;renderAuth();loadGallery();};
