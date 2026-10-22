@@ -67,7 +67,39 @@ $("authForm").addEventListener("submit",async e=>{
    status("authStatus","Para criar contas com convite, segue a configuração de servidor descrita no README.");
  }
 });
-$("uploadForm").addEventListener("submit",async e=>{
+
+$("createInviteBtn").onclick=async()=>{
+  if(!currentProfile||currentProfile.role!=="admin"){
+    status("inviteResult","Só o administrador pode criar convites.");
+    return;
+  }
+
+  status("inviteResult","A gerar convite…");
+
+  const {data,error}=await sb.functions.invoke("rof-invite-artist");
+
+  if(error){
+    status("inviteResult","Não foi possível gerar convite. Confirma a Edge Function e as permissões.");
+    return;
+  }
+
+  const code=typeof data==="string"
+    ? data
+    : data?.code ?? data?.invite_code;
+
+  if(!code){
+    status("inviteResult","A função respondeu, mas não encontrei o código do convite.");
+    return;
+  }
+
+  status("inviteResult","Código: "+code+" — copia e envia à pessoa convidada.");
+
+  try{
+    await navigator.clipboard.writeText(code);
+    status("inviteResult","Código copiado: "+code);
+  }catch{}
+};
+
  e.preventDefault();if(!currentUser||!currentProfile){status("uploadStatus","Entra numa conta de artista primeiro.");return;}
  const file=$("artImage").files[0];if(!file)return;
  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){status("uploadStatus","Usa JPG, PNG ou WebP.");return;}
