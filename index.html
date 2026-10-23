@@ -24,6 +24,28 @@
 
 <div id="authModal" class="modal-bg hidden"><div class="modal"><h2 id="authTitle">Entrar na RØF</h2><p id="authDesc">Acesso reservado aos artistas autorizados.</p><form id="authForm"><label class="field"><span>Nome de utilizador</span><input id="username" minlength="3" maxlength="24" autocomplete="username" required placeholder="ex.: artista_01"></label><label class="field"><span>Palavra-passe</span><input id="password" type="password" minlength="8" autocomplete="current-password" required placeholder="Mínimo de 8 caracteres"></label><label id="inviteField" class="field hidden"><span>Convite de artista</span><input id="invite" autocomplete="off" placeholder="Código de convite"></label><div class="form-row"><button class="btn gold" type="submit" id="authSubmit">Entrar</button><button class="btn" type="button" data-close="authModal">Cancelar</button></div></form><div id="authStatus" class="status"></div><p class="note">As contas são apenas para artistas convidados. Nunca uses uma palavra-passe que já uses noutro sítio.</p></div></div>
 
+<div id="inviteModal" class="modal-bg hidden">
+  <div class="modal">
+    <h2>Entrar com convite ✉️</h2>
+    <p>Introduz o código individual que recebeste para te registares como artista.</p>
+
+    <form id="inviteForm">
+      <label class="field">
+        <span>Código de convite</span>
+        <input id="inviteCode" autocomplete="off" required
+          placeholder="Cola aqui o teu código">
+      </label>
+
+      <div class="form-row">
+        <button class="btn gold" type="submit">Validar convite</button>
+        <button class="btn" type="button" data-close="inviteModal">Cancelar</button>
+      </div>
+    </form>
+
+    <div id="inviteCodeStatus" class="status"></div>
+  </div>
+</div>
+
 <div id="uploadModal" class="modal-bg hidden"><div class="modal"><h2>Publicar uma obra</h2><p>Escolhe uma imagem, dá-lhe um título e, se quiseres, acrescenta o crédito do artista.</p><form id="uploadForm"><label class="field"><span>Imagem do desenho</span><input id="artImage" type="file" accept="image/png,image/jpeg,image/webp" required></label><label class="field"><span>Título da obra</span><input id="artTitle" maxlength="80" required placeholder="Nome do desenho"></label><label class="field"><span>Crédito / assinatura (opcional)</span><input id="artCredit" maxlength="60" placeholder="Nome artístico (opcional)"></label><div class="form-row"><button class="btn gold" type="submit">Publicar obra</button><button class="btn" type="button" data-close="uploadModal">Cancelar</button></div></form><div id="uploadStatus" class="status"></div></div></div>
 
 <div id="adminModal" class="modal-bg hidden"><div class="modal"><h2>Painel da RØF</h2><p>Gera convites individuais para novos artistas. Guarda e envia o código apenas à pessoa que queres convidar.</p><div class="dash"><div class="subhead">Criar convite</div><button id="createInviteBtn" class="btn gold">＋ Gerar convite</button><div id="inviteResult" class="status"></div><p class="note">Cada convite só pode ser usado uma vez. O primeiro administrador é configurado durante a instalação.</p></div><div class="form-row"><button class="btn" data-close="adminModal">Fechar</button></div></div></div>
