@@ -126,7 +126,9 @@ $("logoutBtn").onclick = async () => {
 
 function renderAuth() {
   const logged = !!currentUser;
-
+  
+$("inviteEntryBtn").classList.toggle("hidden", logged);
+  
   ["who", "uploadBtn", "logoutBtn"].forEach(id => {
     logged ? show(id) : hide(id);
   });
