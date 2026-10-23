@@ -264,6 +264,7 @@ async function loadGallery() {
     `${data.length} ${data.length === 1 ? "obra publicada" : "obras publicadas"}.`;
 }
 
+
 $("authForm").addEventListener("submit", async event => {
   event.preventDefault();
   if (!ready) return;
@@ -298,13 +299,66 @@ $("authForm").addEventListener("submit", async event => {
     hide("authModal");
     await loadProfile();
     await loadGallery();
-  } else {
-    status(
-      "authStatus",
-      "A criação de contas por convite ainda precisa de configuração."
-    );
+    return;
   }
+
+  if (authMode === "register") {
+    const code = $("invite").value.trim().toLowerCase();
+
+    if (!code) {
+      status("authStatus", "Falta o código de convite. Valida-o novamente.");
+      return;
+    }
+
+    const { data, error } = await sb.functions.invoke(
+      "rof-accept-invite",
+      {
+        body: {
+          action: "register",
+          code,
+          username,
+          password
+        }
+      }
+    );
+
+    if (error || !data?.username) {
+      status(
+        "authStatus",
+        data?.error ||
+          "Não foi possível criar a conta. Confirma o convite e tenta novamente."
+      );
+      return;
+    }
+
+    const { error: loginError } = await sb.auth.signInWithPassword({
+      email: usernameEmail(username),
+      password
+    });
+
+    if (loginError) {
+      status(
+        "authStatus",
+        "Conta criada! Entra agora com o teu nome e palavra-passe."
+      );
+      authMode = "login";
+      $("authTitle").textContent = "Entrar na RØF";
+      $("authDesc").textContent =
+        "Acesso reservado aos artistas autorizados.";
+      $("authSubmit").textContent = "Entrar";
+      hide("inviteField");
+      return;
+    }
+
+    hide("authModal");
+    await loadProfile();
+    await loadGallery();
+    return;
+  }
+
+  status("authStatus", "Modo de autenticação inválido. Fecha esta janela e tenta novamente.");
 });
+
 
 $("uploadForm").addEventListener("submit", async event => {
   event.preventDefault();
