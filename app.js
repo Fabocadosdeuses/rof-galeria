@@ -34,6 +34,51 @@ document.querySelectorAll("[data-close]").forEach(button => {
   button.addEventListener("click", () => hide(button.dataset.close));
 });
 
+$("inviteEntryBtn").onclick = () => {
+  $("inviteCode").value = "";
+  status("inviteCodeStatus", "");
+  show("inviteModal");
+};
+
+$("inviteForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const code = $("inviteCode").value.trim();
+
+  if (!code) {
+    status("inviteCodeStatus", "Introduz o código do convite.");
+    return;
+  }
+
+  status("inviteCodeStatus", "A verificar o convite…");
+
+  const { data, error } = await sb.functions.invoke("rof-accept-invite", {
+    body: { action: "validate", code }
+  });
+
+  if (error || !data?.valid) {
+    status(
+      "inviteCodeStatus",
+      data?.error || "Convite inválido, expirado ou já utilizado."
+    );
+    return;
+  }
+
+  hide("inviteModal");
+
+  authMode = "register";
+  $("authTitle").textContent = "Criar conta de artista";
+  $("authDesc").textContent = "Convite validado! Escolhe o teu nome e palavra-passe.";
+  $("authSubmit").textContent = "Criar conta";
+  $("invite").value = code;
+  show("inviteField");
+  $("username").value = "";
+  $("password").value = "";
+  $("password").autocomplete = "new-password";
+  status("authStatus", "");
+  show("authModal");
+});
+
 $("loginBtn").onclick = () => {
   if (!ready) {
     alert("Falta configurar o Supabase.");
