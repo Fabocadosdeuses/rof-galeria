@@ -1,114 +1,611 @@
 
-<!doctype html>
-<html lang="pt-PT">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101010">
-<title>RØF — Galeria de Arte</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0b0b0c;--panel:#141415;--panel2:#1b1b1d;--gold:#d5b56d;--gold2:#f0dba5;--muted:#a5a3a0;--line:#34312b;--white:#f5f2eb}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a1711 0,#0b0b0c 48%);color:var(--white);font-family:"DM Sans",sans-serif;min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1160px;margin:auto;padding:0 22px}.top{border-bottom:1px solid #292620;background:#0b0b0ce8;position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-family:"Playfair Display",serif;font-size:30px;letter-spacing:5px;color:var(--gold2);font-weight:700}.brand small{display:block;font:10px "DM Sans",sans-serif;letter-spacing:3px;color:#a9a092;margin-top:-2px}.nav-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#1a1917;color:var(--white);padding:10px 15px;border-radius:8px;font-weight:600}.btn:hover{border-color:var(--gold);color:var(--gold2)}.btn.gold{background:linear-gradient(135deg,#ead49a,#b99248);color:#18140c;border:0}.btn.danger{border-color:#754343;color:#ffbaba}.hero{padding:76px 0 48px;text-align:center}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:4px;font-size:11px;font-weight:700}.hero h1{font:clamp(38px,6vw,66px)/1.1 "Playfair Display",serif;max-width:800px;margin:20px auto 16px}.hero h1 span{color:var(--gold2)}.hero p{max-width:570px;margin:0 auto;color:var(--muted);line-height:1.7}.rule{width:74px;height:1px;background:var(--gold);margin:27px auto}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:18px 0 22px}.section-head h2{font:30px "Playfair Display",serif;margin:0}.section-head p{color:var(--muted);font-size:13px;margin:7px 0 0}.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-bottom:65px}.empty{grid-column:1/-1;text-align:center;padding:50px 18px;border:1px dashed #494237;border-radius:14px;color:var(--muted);line-height:1.8}.empty strong{display:block;color:var(--gold2);font:25px "Playfair Display",serif;margin-bottom:8px}.art{background:#131313;border:1px solid #373027;padding:12px;border-radius:12px;transition:transform .2s,border-color .2s}.art:hover{transform:translateY(-3px);border-color:#a98a4e}.frame{border:7px solid #9c7837;outline:1px solid #e0c47d;outline-offset:-4px;background:#080808;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden}.frame img{width:100%;height:100%;object-fit:contain}.art h3{font:22px "Playfair Display",serif;margin:17px 3px 5px;overflow-wrap:anywhere}.credit{color:var(--muted);font-size:12px;margin:0 3px 10px}.art .art-actions{display:flex;justify-content:flex-end;margin:8px 3px 2px;gap:8px}.tiny{font-size:12px;padding:7px 10px}.footer{border-top:1px solid #292620;padding:25px 0 35px;text-align:center;color:#77736c;font-size:12px;letter-spacing:1px}.footer b{color:var(--gold)}.hidden{display:none!important}.modal-bg{position:fixed;inset:0;background:#000b;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px}.modal{width:min(100%,520px);max-height:90vh;overflow:auto;background:#151515;border:1px solid #51452e;border-radius:14px;padding:24px;box-shadow:0 20px 90px #000}.modal.wide{width:min(100%,760px)}.modal h2{font:28px "Playfair Display",serif;margin:0 0 8px}.modal p{color:var(--muted);font-size:13px;line-height:1.6}.field{display:block;margin:14px 0}.field span{display:block;font-size:12px;color:#d4c7a5;margin-bottom:7px}.field input,.field textarea{width:100%;background:#0b0b0c;border:1px solid #403a2e;border-radius:8px;padding:12px;color:white;outline:none}.field input:focus,.field textarea:focus{border-color:var(--gold)}.field textarea{min-height:75px;resize:vertical}.form-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.status{font-size:13px;color:var(--gold2);min-height:20px;margin-top:10px;overflow-wrap:anywhere}.dash{border:1px solid var(--line);background:#111;padding:16px;border-radius:10px;margin-top:14px}.subhead{font-weight:700;color:var(--gold2);margin:17px 0 8px}.note{font-size:12px;color:#8d8980;line-height:1.6}.userpill{font-size:12px;color:var(--gold2);border:1px solid var(--line);padding:8px 10px;border-radius:20px}.admin-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.admin-option{padding:20px 14px;text-align:left;background:#111;border:1px solid var(--line);border-radius:10px;color:var(--white)}.admin-option:hover{border-color:var(--gold)}.admin-option strong{display:block;color:var(--gold2);font-size:16px;margin-bottom:7px}.admin-option span{font-size:12px;color:var(--muted);line-height:1.5}.artist-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #302c25}.artist-row:last-child{border-bottom:0}.artist-info{min-width:0}.artist-info strong{display:block;overflow-wrap:anywhere}.artist-info small{color:var(--muted)}.artist-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.artist-actions .btn{font-size:12px;padding:7px 9px}.disabled-label{color:#ffb5a9!important}@media(max-width:780px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.hero{padding:54px 0 35px}.section-head h2{font-size:26px}.nav{padding:10px 0}.brand{font-size:25px}}@media(max-width:480px){.gallery{grid-template-columns:1fr}.art{max-width:420px;width:100%;margin:auto}.nav-actions .btn{padding:9px 10px;font-size:12px}.brand{letter-spacing:3px}.wrap{padding:0 15px}.admin-options{grid-template-columns:1fr}.artist-row{align-items:flex-start;flex-direction:column}.artist-actions{justify-content:flex-start}}
-</style>
-</head>
-<body>
+const SUPABASE_URL = "https://yawijjityyryrvbyvbaz.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_UAecJ2fj_d5ao4IPvtorgQ_PKug0e68";
 
-<header class="top"><div class="wrap nav">
-  <div class="brand">RØF<small>ATELIER DIGITAL</small></div>
-  <div class="nav-actions">
-    <span id="who" class="userpill hidden"></span>
-    <button id="loginBtn" class="btn">Entrar</button>
-    <button id="inviteEntryBtn" class="btn">✉️ Entrar com Convite</button>
-    <button id="uploadBtn" class="btn gold hidden">＋ Publicar</button>
-    <button id="adminBtn" class="btn hidden">👑 Painel Admin</button>
-    <button id="logoutBtn" class="btn hidden">Sair</button>
-  </div>
-</div></header>
+const ready =
+  !SUPABASE_URL.includes("COLOCA_AQUI") &&
+  !SUPABASE_ANON_KEY.includes("COLOCA_AQUI");
 
-<main class="wrap">
-  <section class="hero">
-    <div class="eyebrow">Arte • Criatividade • Identidade</div>
-    <h1>Obras com uma história.<br><span>Arte com assinatura.</span></h1>
-    <p>Bem-vindo à galeria RØF — um espaço para apresentar desenhos originais, descobrir novos artistas e dar destaque a cada criação.</p>
-    <div class="rule"></div>
-  </section>
-  <section>
-    <div class="section-head"><div><h2>Galeria</h2><p id="galleryInfo">Uma coleção de obras selecionadas.</p></div></div>
-    <div id="gallery" class="gallery"><div class="empty"><strong>A galeria está a preparar-se.</strong>As primeiras obras da RØF vão aparecer aqui.</div></div>
-  </section>
-</main>
-<footer class="footer">© <span id="year"></span> <b>RØF</b> · ARTE ORIGINAL, FEITA COM INTENÇÃO</footer>
+const sb = ready
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
 
-<div id="authModal" class="modal-bg hidden"><div class="modal">
-  <h2 id="authTitle">Entrar na RØF</h2><p id="authDesc">Acesso reservado aos artistas autorizados.</p>
-  <form id="authForm">
-    <label class="field"><span>Nome de utilizador</span><input id="username" minlength="3" maxlength="24" autocomplete="username" required placeholder="ex.: artista_01"></label>
-    <label class="field"><span>Palavra-passe</span><input id="password" type="password" minlength="8" autocomplete="current-password" required placeholder="Mínimo de 8 caracteres"></label>
-    <label id="inviteField" class="field hidden"><span>Convite de artista</span><input id="invite" autocomplete="off" placeholder="Código de convite"></label>
-    <div class="form-row"><button class="btn gold" type="submit" id="authSubmit">Entrar</button><button class="btn" type="button" data-close="authModal">Cancelar</button></div>
-  </form>
-  <div id="authStatus" class="status"></div>
-  <p class="note">As contas são apenas para artistas convidados. Nunca uses uma palavra-passe que já uses noutro sítio.</p>
-</div></div>
+const $ = id => document.getElementById(id);
 
-<div id="inviteModal" class="modal-bg hidden"><div class="modal">
-  <h2>Entrar com convite ✉️</h2><p>Introduz o código individual que recebeste para te registares como artista.</p>
-  <form id="inviteForm">
-    <label class="field"><span>Código de convite</span><input id="inviteCode" autocomplete="off" required placeholder="Cola aqui o teu código"></label>
-    <div class="form-row"><button class="btn gold" type="submit">Validar convite</button><button class="btn" type="button" data-close="inviteModal">Cancelar</button></div>
-  </form>
-  <div id="inviteCodeStatus" class="status"></div>
-</div></div>
+let currentUser = null;
+let currentProfile = null;
+let authMode = "login";
 
-<div id="uploadModal" class="modal-bg hidden"><div class="modal">
-  <h2>Publicar uma obra</h2><p>Escolhe uma imagem, dá-lhe um título e, se quiseres, acrescenta o crédito do artista.</p>
-  <form id="uploadForm">
-    <label class="field"><span>Imagem do desenho</span><input id="artImage" type="file" accept="image/png,image/jpeg,image/webp" required></label>
-    <label class="field"><span>Título da obra</span><input id="artTitle" maxlength="80" required placeholder="Nome do desenho"></label>
-    <label class="field"><span>Crédito / assinatura (opcional)</span><input id="artCredit" maxlength="60" placeholder="Nome artístico (opcional)"></label>
-    <div class="form-row"><button class="btn gold" type="submit">Publicar obra</button><button class="btn" type="button" data-close="uploadModal">Cancelar</button></div>
-  </form>
-  <div id="uploadStatus" class="status"></div>
-</div></div>
+$("year").textContent = new Date().getFullYear();
 
-<div id="adminModal" class="modal-bg hidden"><div class="modal">
-  <h2>Painel da RØF</h2><p>Ferramentas de administração da galeria.</p>
-  <div class="admin-options">
-    <button id="openInvitesBtn" class="admin-option"><strong>✉️ Convidar artistas</strong><span>Gerar convites individuais para novos artistas.</span></button>
-    <button id="openArtistsBtn" class="admin-option"><strong>👥 Gerir contas de artistas</strong><span>Consultar, editar ou desativar contas.</span></button>
-  </div>
-  <div class="form-row"><button class="btn" data-close="adminModal">Fechar</button></div>
-</div></div>
+function status(id, msg) {
+  $(id).textContent = msg;
+}
 
-<div id="invitesModal" class="modal-bg hidden"><div class="modal">
-  <h2>Convidar artistas</h2><p>Gera um convite individual. Cada código só pode ser utilizado uma vez.</p>
-  <div class="dash"><button id="createInviteBtn" class="btn gold">＋ Gerar convite</button><div id="inviteResult" class="status"></div></div>
-  <div class="form-row"><button class="btn" data-close="invitesModal">Voltar</button></div>
-</div></div>
+function show(id) {
+  $(id).classList.remove("hidden");
+}
 
-<div id="artistsModal" class="modal-bg hidden"><div class="modal wide">
-  <h2>Gerir contas de artistas</h2><p>As contas desativadas não podem entrar. As obras publicadas permanecem na galeria.</p>
-  <div id="artistsList" class="dash">A carregar artistas…</div>
-  <div id="artistsStatus" class="status"></div>
-  <div class="form-row"><button class="btn" id="refreshArtistsBtn">↻ Atualizar lista</button><button class="btn" data-close="artistsModal">Voltar</button></div>
-</div></div>
+function hide(id) {
+  $(id).classList.add("hidden");
+}
 
-<div id="editArtistModal" class="modal-bg hidden"><div class="modal">
-  <h2 id="editArtistTitle">Editar artista</h2>
-  <p id="editArtistDescription">Altera os dados da conta selecionada.</p>
-  <form id="editArtistForm">
-    <input id="editArtistOriginal" type="hidden">
-    <label class="field"><span>Novo nome de utilizador</span><input id="editArtistUsername" minlength="3" maxlength="24" required></label>
-    <label class="field"><span>Nova palavra-passe (opcional)</span><input id="editArtistPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="Deixa vazio para não alterar"></label>
-    <label class="field"><span>Confirmar nova palavra-passe</span><input id="editArtistPasswordConfirm" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="Repete a nova palavra-passe"></label>
-    <div class="form-row"><button class="btn gold" type="submit">Guardar alterações</button><button class="btn" type="button" data-close="editArtistModal">Cancelar</button></div>
-  </form>
-  <div id="editArtistStatus" class="status"></div>
-</div></div>
+function isAdmin() {
+  return currentProfile?.role === "admin" && currentProfile?.disabled !== true;
+}
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
-</body>
-</html>
+async function adminRequest(action, extra = {}) {
+  if (!isAdmin()) {
+    return { data: null, error: new Error("Apenas o administrador pode fazer isto.") };
+  }
+
+  return await sb.functions.invoke("rof-accept-invite", {
+    body: { action, ...extra }
+  });
+}
+
+document.querySelectorAll("[data-close]").forEach(button => {
+  button.addEventListener("click", () => hide(button.dataset.close));
+});
+
+$("inviteEntryBtn").onclick = () => {
+  $("inviteCode").value = "";
+  status("inviteCodeStatus", "");
+  show("inviteModal");
+};
+
+$("inviteForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!ready) return;
+
+  const code = $("inviteCode").value.trim();
+
+  if (!code) {
+    status("inviteCodeStatus", "Introduz o código do convite.");
+    return;
+  }
+
+  status("inviteCodeStatus", "A verificar o convite…");
+
+  const { data, error } = await sb.functions.invoke("rof-accept-invite", {
+    body: { action: "validate", code }
+  });
+
+  if (error || !data?.valid) {
+    status("inviteCodeStatus", data?.error || "Convite inválido, expirado ou já utilizado.");
+    return;
+  }
+
+  hide("inviteModal");
+
+  authMode = "register";
+  $("authTitle").textContent = "Criar conta de artista";
+  $("authDesc").textContent = "Convite validado! Escolhe o teu nome e palavra-passe.";
+  $("authSubmit").textContent = "Criar conta";
+  $("invite").value = code;
+  show("inviteField");
+  $("username").value = "";
+  $("password").value = "";
+  $("password").autocomplete = "new-password";
+  status("authStatus", "");
+  show("authModal");
+});
+
+$("loginBtn").onclick = () => {
+  if (!ready) {
+    alert("Falta configurar o Supabase.");
+    return;
+  }
+
+  authMode = "login";
+  $("authTitle").textContent = "Entrar na RØF";
+  $("authDesc").textContent = "Acesso reservado aos artistas autorizados.";
+  $("authSubmit").textContent = "Entrar";
+  hide("inviteField");
+  $("username").value = "";
+  $("password").value = "";
+  $("password").autocomplete = "current-password";
+  status("authStatus", "");
+  show("authModal");
+};
+
+$("adminBtn").onclick = () => {
+  if (isAdmin()) show("adminModal");
+};
+
+$("who").onclick = () => {
+  if (isAdmin()) show("adminModal");
+};
+
+$("openInvitesBtn").onclick = () => {
+  if (!isAdmin()) return;
+  hide("adminModal");
+  status("inviteResult", "");
+  show("invitesModal");
+};
+
+$("openArtistsBtn").onclick = async () => {
+  if (!isAdmin()) return;
+  hide("adminModal");
+  show("artistsModal");
+  await loadArtists();
+};
+
+$("refreshArtistsBtn").onclick = loadArtists;
+
+$("uploadBtn").onclick = () => {
+  $("uploadForm").reset();
+  status("uploadStatus", "");
+  show("uploadModal");
+};
+
+$("logoutBtn").onclick = async () => {
+  if (sb) await sb.auth.signOut();
+
+  currentUser = null;
+  currentProfile = null;
+
+  renderAuth();
+  await loadGallery();
+};
+
+function renderAuth() {
+  const logged = !!currentUser;
+
+  $("inviteEntryBtn").classList.toggle("hidden", logged);
+
+  ["who", "uploadBtn", "logoutBtn"].forEach(id => {
+    logged ? show(id) : hide(id);
+  });
+
+  if (logged) {
+    $("who").textContent = "@" + (currentProfile?.username || "artista");
+  }
+
+  $("adminBtn").classList.toggle("hidden", !isAdmin());
+  $("loginBtn").classList.toggle("hidden", logged);
+}
+
+function usernameEmail(name) {
+  return name.trim().toLowerCase() + "@accounts.rof.invalid";
+}
+
+async function loadProfile() {
+  if (!sb) return false;
+
+  const { data: { user } } = await sb.auth.getUser();
+
+  currentUser = user || null;
+  currentProfile = null;
+
+  if (user) {
+    const { data, error } = await sb
+      .from("profiles")
+      .select("username,role,disabled")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (!error) currentProfile = data;
+
+    if (!currentProfile || currentProfile.disabled === true) {
+      await sb.auth.signOut();
+      currentUser = null;
+      currentProfile = null;
+      renderAuth();
+      return false;
+    }
+  }
+
+  renderAuth();
+  return true;
+}
+
+async function loadGallery() {
+  const gallery = $("gallery");
+
+  if (!ready) {
+    gallery.innerHTML =
+      '<div class="empty"><strong>Pronta para receber as primeiras obras.</strong>Termina a configuração do Supabase.</div>';
+    return;
+  }
+
+  const { data, error } = await sb
+    .from("artworks")
+    .select("id,title,credit,image_url,created_at,owner_id,storage_path")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    gallery.innerHTML =
+      '<div class="empty"><strong>A galeria está quase pronta.</strong>Confirma o SQL e as permissões do Supabase.</div>';
+    return;
+  }
+
+  if (!data?.length) {
+    gallery.innerHTML =
+      '<div class="empty"><strong>A primeira obra está à espera.</strong>Quando um artista publicar um desenho, ele aparecerá aqui.</div>';
+    $("galleryInfo").textContent = "0 obras publicadas.";
+    return;
+  }
+
+  gallery.innerHTML = "";
+
+  data.forEach(artwork => {
+    const card = document.createElement("article");
+    card.className = "art";
+
+    const frame = document.createElement("div");
+    frame.className = "frame";
+
+    const img = document.createElement("img");
+    img.src = artwork.image_url;
+    img.alt = artwork.title;
+    img.loading = "lazy";
+    frame.append(img);
+
+    const title = document.createElement("h3");
+    title.textContent = artwork.title;
+    card.append(frame, title);
+
+    if (artwork.credit) {
+      const credit = document.createElement("p");
+      credit.className = "credit";
+      credit.textContent = "Por " + artwork.credit;
+      card.append(credit);
+    }
+
+    if (currentUser && (currentUser.id === artwork.owner_id || isAdmin())) {
+      const actions = document.createElement("div");
+      actions.className = "art-actions";
+
+      const del = document.createElement("button");
+      del.className = "btn tiny";
+      del.textContent = "Apagar";
+
+      del.onclick = async () => {
+        if (!confirm("Apagar esta obra da galeria?")) return;
+
+        const { error } = await sb
+          .from("artworks")
+          .delete()
+          .eq("id", artwork.id);
+
+        if (error) {
+          alert("Não foi possível apagar: " + error.message);
+        } else {
+          await loadGallery();
+        }
+      };
+
+      actions.append(del);
+      card.append(actions);
+    }
+
+    gallery.append(card);
+  });
+
+  $("galleryInfo").textContent =
+    `${data.length} ${data.length === 1 ? "obra publicada" : "obras publicadas"}.`;
+}
+
+$("authForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!ready) return;
+
+  const username = $("username").value.trim().toLowerCase();
+  const password = $("password").value;
+
+  if (!/^[a-z0-9_]{3,24}$/.test(username)) {
+    status("authStatus", "Usa 3–24 caracteres: letras sem acentos, números ou _.");
+    return;
+  }
+
+  status("authStatus", "A verificar…");
+
+  if (authMode === "login") {
+    const { error } = await sb.auth.signInWithPassword({
+      email: usernameEmail(username),
+      password
+    });
+
+    if (error) {
+      status("authStatus", "Não foi possível entrar. Confirma o nome e a palavra-passe.");
+      return;
+    }
+
+    const allowed = await loadProfile();
+
+    if (!allowed) {
+      status("authStatus", "Esta conta está desativada ou não tem um perfil válido.");
+      show("authModal");
+      return;
+    }
+
+    hide("authModal");
+    await loadGallery();
+    return;
+  }
+
+  if (authMode === "register") {
+    const code = $("invite").value.trim().toLowerCase();
+
+    if (!code) {
+      status("authStatus", "Falta o código de convite. Valida-o novamente.");
+      return;
+    }
+
+    const { data, error } = await sb.functions.invoke("rof-accept-invite", {
+      body: { action: "register", code, username, password }
+    });
+
+    if (error || !data?.username) {
+      status("authStatus", data?.error || "Não foi possível criar a conta. Confirma o convite e tenta novamente.");
+      return;
+    }
+
+    const { error: loginError } = await sb.auth.signInWithPassword({
+      email: usernameEmail(username),
+      password
+    });
+
+    if (loginError) {
+      status("authStatus", "Conta criada! Entra agora com o teu nome e palavra-passe.");
+      authMode = "login";
+      $("authTitle").textContent = "Entrar na RØF";
+      $("authDesc").textContent = "Acesso reservado aos artistas autorizados.";
+      $("authSubmit").textContent = "Entrar";
+      hide("inviteField");
+      return;
+    }
+
+    await loadProfile();
+    hide("authModal");
+    await loadGallery();
+    return;
+  }
+
+  status("authStatus", "Modo de autenticação inválido. Fecha esta janela e tenta novamente.");
+});
+
+$("uploadForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!currentUser || !currentProfile || currentProfile.disabled) {
+    status("uploadStatus", "Entra numa conta de artista ativa primeiro.");
+    return;
+  }
+
+  const file = $("artImage").files[0];
+  if (!file) return;
+
+  if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+    status("uploadStatus", "Usa JPG, PNG ou WebP.");
+    return;
+  }
+
+  if (file.size > 8 * 1024 * 1024) {
+    status("uploadStatus", "A imagem tem de ter até 8 MB.");
+    return;
+  }
+
+  status("uploadStatus", "A carregar a imagem…");
+
+  const ext = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
+  const path = `${currentUser.id}/${crypto.randomUUID()}.${ext}`;
+
+  const upload = await sb.storage.from("artworks").upload(path, file, {
+    contentType: file.type,
+    upsert: false
+  });
+
+  if (upload.error) {
+    status("uploadStatus", "Erro ao carregar. Confirma as regras de armazenamento.");
+    return;
+  }
+
+  const publicUrl = sb.storage.from("artworks").getPublicUrl(path).data.publicUrl;
+
+  const { error } = await sb.from("artworks").insert({
+    title: $("artTitle").value.trim(),
+    credit: $("artCredit").value.trim() || null,
+    image_url: publicUrl,
+    storage_path: path,
+    owner_id: currentUser.id
+  });
+
+  if (error) {
+    await sb.storage.from("artworks").remove([path]);
+    status("uploadStatus", "Não foi possível publicar. Confirma as regras da base de dados.");
+    return;
+  }
+
+  hide("uploadModal");
+  await loadGallery();
+});
+
+$("createInviteBtn").onclick = async () => {
+  if (!isAdmin()) {
+    status("inviteResult", "Só o administrador pode criar convites.");
+    return;
+  }
+
+  status("inviteResult", "A gerar convite…");
+
+  const { data, error } = await sb.functions.invoke("rof-invite-artist");
+
+  if (error) {
+    status("inviteResult", data?.error || "Não foi possível gerar convite. Confirma a Edge Function e as permissões.");
+    return;
+  }
+
+  const code = typeof data === "string" ? data : data?.code ?? data?.invite_code;
+
+  if (!code) {
+    status("inviteResult", "A função respondeu, mas não encontrei o código do convite.");
+    return;
+  }
+
+  status("inviteResult", "Código: " + code);
+
+  try {
+    await navigator.clipboard.writeText(code);
+    status("inviteResult", "Código copiado: " + code);
+  } catch {
+    status("inviteResult", "Copia manualmente este código: " + code);
+  }
+};
+
+async function loadArtists() {
+  if (!isAdmin()) return;
+
+  $("artistsList").textContent = "A carregar artistas…";
+  status("artistsStatus", "");
+
+  const { data, error } = await adminRequest("list_artists");
+
+  if (error || !data?.artists) {
+    $("artistsList").textContent = "";
+    status("artistsStatus", data?.error || error?.message || "Não foi possível carregar a lista.");
+    return;
+  }
+
+  const artists = data.artists;
+  $("artistsList").innerHTML = "";
+
+  if (!artists.length) {
+    $("artistsList").textContent = "Ainda não existem contas de artistas.";
+    return;
+  }
+
+  artists.forEach(artist => {
+    const row = document.createElement("div");
+    row.className = "artist-row";
+
+    const info = document.createElement("div");
+    info.className = "artist-info";
+
+    const name = document.createElement("strong");
+    name.textContent = "@" + artist.username;
+
+    const state = document.createElement("small");
+    state.textContent = artist.disabled ? "Conta desativada" : "Conta ativa";
+    if (artist.disabled) state.className = "disabled-label";
+
+    info.append(name, state);
+
+    const actions = document.createElement("div");
+    actions.className = "artist-actions";
+
+    const edit = document.createElement("button");
+    edit.className = "btn";
+    edit.textContent = "Editar";
+    edit.onclick = () => openEditArtist(artist);
+
+    actions.append(edit);
+
+    if (!artist.disabled) {
+      const disable = document.createElement("button");
+      disable.className = "btn danger";
+      disable.textContent = "Desativar";
+      disable.onclick = () => disableArtist(artist.username);
+      actions.append(disable);
+    }
+
+    row.append(info, actions);
+    $("artistsList").append(row);
+  });
+}
+
+function openEditArtist(artist) {
+  $("editArtistOriginal").value = artist.username;
+  $("editArtistUsername").value = artist.username;
+  $("editArtistPassword").value = "";
+  $("editArtistPasswordConfirm").value = "";
+  status("editArtistStatus", "");
+  $("editArtistTitle").textContent = "Editar @" + artist.username;
+  $("editArtistDescription").textContent = artist.disabled
+    ? "Esta conta está desativada. Podes alterar os dados, mas ela continuará desativada."
+    : "Altera o nome de utilizador e, se necessário, a palavra-passe.";
+  show("editArtistModal");
+}
+
+$("editArtistForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!isAdmin()) return;
+
+  const originalUsername = $("editArtistOriginal").value;
+  const username = $("editArtistUsername").value.trim().toLowerCase();
+  const password = $("editArtistPassword").value;
+  const confirmation = $("editArtistPasswordConfirm").value;
+
+  if (!/^[a-z0-9_]{3,24}$/.test(username)) {
+    status("editArtistStatus", "O nome deve ter 3–24 caracteres: letras, números ou _.");
+    return;
+  }
+
+  if (password && password.length < 8) {
+    status("editArtistStatus", "A palavra-passe deve ter pelo menos 8 caracteres.");
+    return;
+  }
+
+  if (password !== confirmation) {
+    status("editArtistStatus", "As palavras-passe não coincidem.");
+    return;
+  }
+
+  status("editArtistStatus", "A guardar alterações…");
+
+  const { data, error } = await adminRequest("update_artist", {
+    username: originalUsername,
+    new_username: username,
+    password: password || undefined
+  });
+
+  if (error || !data?.success) {
+    status("editArtistStatus", data?.error || error?.message || "Não foi possível guardar.");
+    return;
+  }
+
+  hide("editArtistModal");
+  status("artistsStatus", data.message || "Conta atualizada.");
+  await loadArtists();
+}
+
+);
+
+async function disableArtist(username) {
+  if (!isAdmin()) return;
+
+  const confirmed = confirm(
+    `Desativar a conta @${username}?\n\nA pessoa deixará de conseguir entrar na RØF. Os desenhos publicados permanecem na galeria.`
+  );
+
+  if (!confirmed) return;
+
+  status("artistsStatus", "A desativar conta…");
+
+  const { data, error } = await adminRequest("disable_artist", { username });
+
+  if (error || !data?.success) {
+    status("artistsStatus", data?.error || error?.message || "Não foi possível desativar a conta.");
+    return;
+  }
+
+  status("artistsStatus", data.message || "Conta desativada. As obras permanecem na galeria.");
+  await loadArtists();
+}
+
+(async () => {
+  if (!ready) {
+    renderAuth();
+    await loadGallery();
+    return;
+  }
+
+  const { data: { session } } = await sb.auth.getSession();
+
+  if (session) await loadProfile();
+
+  renderAuth();
+  await loadGallery();
+})();
