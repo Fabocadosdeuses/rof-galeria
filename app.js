@@ -181,12 +181,14 @@ async function loadProfile() {
     if (!error) currentProfile = data;
 
     if (!currentProfile || currentProfile.disabled) {
+      const accountDisabled = currentProfile?.disabled === true;
+
       await sb.auth.signOut();
       currentUser = null;
       currentProfile = null;
 
       alert(
-        currentProfile?.disabled
+        accountDisabled
           ? "Esta conta está desativada."
           : "Não foi possível carregar o perfil."
       );
@@ -274,7 +276,27 @@ async function loadGallery() {
         if (error) {
           alert("Não foi possível apagar: " + error.message);
         } else {
+          let storageCleanupFailed = !artwork.storage_path;
+
+          if (artwork.storage_path) {
+            try {
+              const { error: storageError } = await sb.storage
+                .from("artworks")
+                .remove([artwork.storage_path]);
+
+              storageCleanupFailed = !!storageError;
+            } catch {
+              storageCleanupFailed = true;
+            }
+          }
+
           await loadGallery();
+
+          if (storageCleanupFailed) {
+            alert(
+              "A obra foi removida da galeria, mas não foi possível apagar a imagem do armazenamento. Verifica as permissões do bucket artworks."
+            );
+          }
         }
       };
 
